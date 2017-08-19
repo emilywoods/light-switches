@@ -9,10 +9,10 @@ import static org.junit.Assert.*;
 
 
 public class LightStatePresenterTest {
-    public static final String CURRENT_TIME = "00:00:00";
-    public static final String POSITION = "10";
-    public static final String COLOUR = "white";
     LightStatePresenter subjectUnderTest;
+    private final String CURRENT_TIME = "00:00:00";
+    private final int POSITION = 10;
+    private final String COLOUR = "white";
     String result;
 
     @Before
@@ -28,7 +28,7 @@ public class LightStatePresenterTest {
     }
 
     private void whenGetLightStateIsCalled() {
-        result = subjectUnderTest.getLightState(CURRENT_TIME, POSITION, Light.State.OFF, COLOUR);
+        result = subjectUnderTest.presentLightState(CURRENT_TIME, POSITION, Light.State.OFF, COLOUR);
     }
 
 

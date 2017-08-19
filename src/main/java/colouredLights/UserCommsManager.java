@@ -2,7 +2,9 @@ package colouredLights;
 
 import colouredLights.utils.UserCommsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserCommsManager {
     public final String DEFAULT_NUMBER_OF_LIGHTS = "20";
     private UserCommsService userComms;

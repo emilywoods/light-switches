@@ -1,8 +1,11 @@
 package colouredLights.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
+@Component
 public class UserCommsService {
 
     public PrintStream systemOut(){
