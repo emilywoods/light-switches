@@ -11,7 +11,7 @@ public class UserCommsService {
 
     public String userInput() {
         Scanner scanner = new Scanner(System.in);
-        return scanner.next();
+        return scanner.nextLine();
     }
 
 }

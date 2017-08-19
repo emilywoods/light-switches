@@ -18,14 +18,15 @@ public class UserCommsManager {
     }
 
     public void printLightState(String lightState) {
-        userComms.systemOut().print(lightState);
+        userComms.systemOut().println(lightState);
     }
 
     private String getUserInput() {
         userComms.systemOut().println("Select a number of colours");
         String numberOfLights = userComms.userInput();
 
-        if (numberOfLights == null) {
+        if (numberOfLights.isEmpty()) {
+            userComms.systemOut().println("No input provided. Default = 20");
             numberOfLights = DEFAULT_NUMBER_OF_LIGHTS;
         }
 

@@ -30,7 +30,7 @@ public class UserCommsManagerTest {
         givenTheSystemPrintsAMessage();
         givenTheUserInputs("Hello");
 
-        whenRunAppIsCalled();
+        whenGetUserInputIntegerIsCalled();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -38,7 +38,7 @@ public class UserCommsManagerTest {
         givenTheSystemPrintsAMessage();
         givenTheUserInputs("4.1");
 
-        whenRunAppIsCalled();
+        whenGetUserInputIntegerIsCalled();
     }
 
     @Test
@@ -46,7 +46,7 @@ public class UserCommsManagerTest {
         givenTheSystemPrintsAMessage();
         givenTheUserInputsNothing();
 
-        whenRunAppIsCalled();
+        whenGetUserInputIntegerIsCalled();
 
         thenTheInputIsSetTo20();
     }
@@ -55,7 +55,7 @@ public class UserCommsManagerTest {
     public void printLightState_printsCurrentTime() {
         givenTheSystemPrintsAMessage();
 
-        whenPrintLightStateIsCalledWithCurrentTimeAndPosition("00:00:00", 1);
+        whenPrintLightStateIsCalledWithCurrentTimeAndPosition("00:00:00");
 
         thenPrintsToConsole();
     }
@@ -72,12 +72,12 @@ public class UserCommsManagerTest {
         when(mockUserComms.userInput()).thenReturn(input);
     }
 
-    private void whenRunAppIsCalled() {
+    private void whenGetUserInputIntegerIsCalled() {
         userInput = subjectUnderTest.getUserInputInteger();
     }
 
-    private void whenPrintLightStateIsCalledWithCurrentTimeAndPosition(String time, int position) {
-        subjectUnderTest.printLightState(time, position);
+    private void whenPrintLightStateIsCalledWithCurrentTimeAndPosition(String time) {
+        subjectUnderTest.printLightState(time);
     }
 
     private void thenTheInputIsSetTo20(){
