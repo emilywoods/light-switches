@@ -1,19 +1,24 @@
 package colouredLights;
 
+import colouredLights.utils.UserCommsService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserCommsManagerTest {
     UserCommsManager subjectUnderTest;
 
+    Integer userInput;
+
     @Mock
-    UserComms mockUserComms;
+    UserCommsService mockUserComms;
 
     @Before
     public void setup() {
@@ -36,6 +41,16 @@ public class UserCommsManagerTest {
         whenRunAppIsCalled();
     }
 
+    @Test
+    public void getUserInput_givenUserGivesNoInput_thenSetsInputTo20() {
+        givenTheSystemPrintsAMessage();
+        givenTheUserInputsNothing();
+
+        whenRunAppIsCalled();
+
+        thenTheInputIsSetTo20();
+    }
+
     private void givenTheSystemPrintsAMessage(){
         when(mockUserComms.systemOut()).thenReturn(System.out);
     }
@@ -49,6 +64,10 @@ public class UserCommsManagerTest {
     }
 
     private void whenRunAppIsCalled() {
-        subjectUnderTest.getUserInput();
+        userInput = subjectUnderTest.getUserInputInteger();
+    }
+
+    private void thenTheInputIsSetTo20(){
+        assertThat(userInput, is(20));
     }
 }

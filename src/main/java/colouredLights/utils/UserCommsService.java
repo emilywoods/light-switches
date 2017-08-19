@@ -1,9 +1,9 @@
-package colouredLights;
+package colouredLights.utils;
 
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class UserComms {
+public class UserCommsService {
 
     public PrintStream systemOut(){
         return System.out;
