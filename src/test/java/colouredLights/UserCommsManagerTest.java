@@ -9,7 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserCommsManagerTest {
@@ -26,7 +26,7 @@ public class UserCommsManagerTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getUserInput_givenUserInputsNonNumber_thenThrowsException() {
+    public void getUserInputInteger_givenUserInputsNonNumber_thenThrowsException() {
         givenTheSystemPrintsAMessage();
         givenTheUserInputs("Hello");
 
@@ -34,7 +34,7 @@ public class UserCommsManagerTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getUserInput_givenUserInputsNonInteger_thenThrowsException() {
+    public void getUserInputInteger_givenUserInputsNonInteger_thenThrowsException() {
         givenTheSystemPrintsAMessage();
         givenTheUserInputs("4.1");
 
@@ -42,13 +42,22 @@ public class UserCommsManagerTest {
     }
 
     @Test
-    public void getUserInput_givenUserGivesNoInput_thenSetsInputTo20() {
+    public void getUserInputInteger_givenUserGivesNoInput_thenSetsInputTo20() {
         givenTheSystemPrintsAMessage();
         givenTheUserInputsNothing();
 
         whenRunAppIsCalled();
 
         thenTheInputIsSetTo20();
+    }
+
+    @Test
+    public void printLightState_printsCurrentTime() {
+        givenTheSystemPrintsAMessage();
+
+        whenPrintLightStateIsCalledWithCurrentTimeAndPosition("00:00:00", 1);
+
+        thenPrintsToConsole();
     }
 
     private void givenTheSystemPrintsAMessage(){
@@ -67,7 +76,16 @@ public class UserCommsManagerTest {
         userInput = subjectUnderTest.getUserInputInteger();
     }
 
+    private void whenPrintLightStateIsCalledWithCurrentTimeAndPosition(String time, int position) {
+        subjectUnderTest.printLightState(time, position);
+    }
+
     private void thenTheInputIsSetTo20(){
         assertThat(userInput, is(20));
     }
+
+    private void thenPrintsToConsole() {
+        verify(mockUserComms, times(1)).systemOut();
+    }
+
 }

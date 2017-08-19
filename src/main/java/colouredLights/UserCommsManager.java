@@ -1,32 +1,36 @@
 package colouredLights;
 
+import colouredLights.utils.UserCommsService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.PrintStream;
-import java.util.Scanner;
-
 public class UserCommsManager {
-    private UserComms userComms;
+    public final String DEFAULT_NUMBER_OF_LIGHTS = "20";
+    private UserCommsService userComms;
 
     @Autowired
-    public UserCommsManager(UserComms userComms) {
-
+    public UserCommsManager(UserCommsService userComms) {
         this.userComms = userComms;
     }
 
-    public String getUserInput() {
+    public Integer getUserInputInteger() {
+        String stringNumberOfLights  = getUserInput();
+        return Integer.parseInt(stringNumberOfLights);
+    }
+
+    public void printLightState(String lightState) {
+        userComms.systemOut().print(lightState);
+    }
+
+    private String getUserInput() {
         userComms.systemOut().println("Select a number of colours");
         String numberOfLights = userComms.userInput();
+
+        if (numberOfLights == null) {
+            numberOfLights = DEFAULT_NUMBER_OF_LIGHTS;
+        }
+
         validateInput(numberOfLights);
-
-
         return numberOfLights;
-        // Message: what number?
-        // Get user input
-        // Validate user input
-        // While the value is less than the number of user input then output to terminal
-        // Mapper class output is
-
     }
 
     private void validateInput(String numberOfLights) {
