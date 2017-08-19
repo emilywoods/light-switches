@@ -1,16 +1,14 @@
 package colouredLights.model;
 
+import java.util.List;
+
 public class Light {
 
     public State state;
-    public Colour colour;
+    public List<String> colour;
 
     public enum State {
         ON, OFF
-    }
-
-    public enum Colour {
-        RED, GREEN, WHITE
     }
 
 }
