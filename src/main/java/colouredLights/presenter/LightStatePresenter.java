@@ -1,4 +1,4 @@
-package colouredLights;
+package colouredLights.presenter;
 
 import colouredLights.model.Light;
 import org.springframework.stereotype.Component;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LightStatePresenter {
 
-    public String presentLightState(String currentTime, int currentPosition, Light.State lightState, String lightColour) {
+    public String present(String currentTime, int currentPosition, Light.State lightState, String lightColour) {
         String currentPositionString = String.valueOf(currentPosition);
         return currentTime + " " + currentPositionString + " " + lightColour + " Light " + lightState;
     }

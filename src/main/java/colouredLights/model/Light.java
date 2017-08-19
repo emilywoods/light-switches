@@ -7,12 +7,7 @@ import java.util.List;
 
 @Component
 public class Light {
-
     public List<String> colour = Arrays.asList("Blue", "Green", "Red");
-
-    public enum State {
-        ON, OFF
-    }
-
+    public enum State { ON, OFF }
 
 }

@@ -1,4 +1,4 @@
-package colouredLights;
+package colouredLights.utils;
 
 import colouredLights.utils.TimeService;
 import org.junit.Before;
@@ -17,9 +17,7 @@ public class TimeServiceTest {
 
     @Test
     public void currentTime_returnsCurrentTime() {
-        assertTrue(subjectUnderTest.currentTime().matches("\\d\\d:\\d\\d:\\d\\d"));
+        assertTrue(subjectUnderTest.currentTime().matches("\\d{2}:\\d{2}:\\d{2}"));
     }
-
-
 
 }

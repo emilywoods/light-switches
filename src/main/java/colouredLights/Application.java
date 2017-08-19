@@ -1,6 +1,8 @@
 package colouredLights;
 
+import colouredLights.manager.UserCommsManager;
 import colouredLights.model.Light;
+import colouredLights.presenter.LightStatePresenter;
 import colouredLights.utils.TimeService;
 import colouredLights.utils.UserCommsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,6 @@ public class Application implements CommandLineRunner {
             LightStatePresenter lightStatePresenter,
             Light light
     ) {
-
         this.userComms = userComms;
         this.timeService = timeService;
         this.userCommsManager = userCommsManager;
@@ -54,8 +55,8 @@ public class Application implements CommandLineRunner {
     }
 
     private void outputState(int currentPosition, int lightListElement, Light.State lightState) throws InterruptedException {
-        String lightOff = lightStatePresenter.presentLightState(timeService.currentTime(), currentPosition, lightState, light.colour.get(lightListElement));
-        userCommsManager.printLightState(lightOff);
+        String lightOff = lightStatePresenter.present(timeService.currentTime(), currentPosition, lightState, light.colour.get(lightListElement));
+        userCommsManager.printToConsole(lightOff);
         TimeUnit.SECONDS.sleep(1);
     }
 }

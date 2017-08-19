@@ -1,12 +1,12 @@
-package colouredLights;
+package colouredLights.presenter;
 
 import colouredLights.model.Light;
+import colouredLights.presenter.LightStatePresenter;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-
 
 public class LightStatePresenterTest {
     LightStatePresenter subjectUnderTest;
@@ -21,14 +21,14 @@ public class LightStatePresenterTest {
     }
 
     @Test
-    public void getLightState_returnsLightStateString(){
+    public void present_returnsLightStateString(){
         whenGetLightStateIsCalled();
 
         thenReturnsLightStateString();
     }
 
     private void whenGetLightStateIsCalled() {
-        result = subjectUnderTest.presentLightState(CURRENT_TIME, POSITION, Light.State.OFF, COLOUR);
+        result = subjectUnderTest.present(CURRENT_TIME, POSITION, Light.State.OFF, COLOUR);
     }
 
 

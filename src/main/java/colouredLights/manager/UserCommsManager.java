@@ -1,4 +1,4 @@
-package colouredLights;
+package colouredLights.manager;
 
 import colouredLights.utils.UserCommsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,8 @@ public class UserCommsManager {
         return Integer.parseInt(stringNumberOfLights);
     }
 
-    public void printLightState(String lightState) {
-        userComms.systemOut().println(lightState);
+    public void printToConsole(String output) {
+        userComms.systemOut().println(output);
     }
 
     private String getUserInput() {

@@ -1,5 +1,6 @@
-package colouredLights;
+package colouredLights.manager;
 
+import colouredLights.manager.UserCommsManager;
 import colouredLights.utils.UserCommsService;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,7 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class UserCommsManagerTest {
     UserCommsManager subjectUnderTest;
-
+    private final int DEFAULT_NUMBER = 20;
     Integer userInput;
 
     @Mock
@@ -48,16 +49,28 @@ public class UserCommsManagerTest {
 
         whenGetUserInputIntegerIsCalled();
 
-        thenTheInputIsSetTo20();
+        thenPrintsToConsoleTimes(2);
+        thenReturnsInput(DEFAULT_NUMBER);
     }
 
     @Test
-    public void printLightState_printsCurrentTime() {
+    public void getUserInputInteger_givenUserProvidesIntegerInput_thenReturnsInput() {
+        givenTheSystemPrintsAMessage();
+        givenTheUserInputs("10");
+
+        whenGetUserInputIntegerIsCalled();
+
+        thenPrintsToConsoleTimes(1);
+        thenReturnsInput(10);
+    }
+
+    @Test
+    public void printToConsole_printsToConsole() {
         givenTheSystemPrintsAMessage();
 
-        whenPrintLightStateIsCalledWithCurrentTimeAndPosition("00:00:00");
+        whenPrintToConsoleIsCalledWith("Light State");
 
-        thenPrintsToConsole();
+        thenPrintsToConsoleTimes(1);
     }
 
     private void givenTheSystemPrintsAMessage(){
@@ -65,7 +78,7 @@ public class UserCommsManagerTest {
     }
 
     private void  givenTheUserInputsNothing() {
-        when(mockUserComms.userInput()).thenReturn(null);
+        when(mockUserComms.userInput()).thenReturn("");
     }
 
     private void givenTheUserInputs(String input) {
@@ -76,16 +89,16 @@ public class UserCommsManagerTest {
         userInput = subjectUnderTest.getUserInputInteger();
     }
 
-    private void whenPrintLightStateIsCalledWithCurrentTimeAndPosition(String time) {
-        subjectUnderTest.printLightState(time);
+    private void whenPrintToConsoleIsCalledWith(String output) {
+        subjectUnderTest.printToConsole(output);
     }
 
-    private void thenTheInputIsSetTo20(){
-        assertThat(userInput, is(20));
+    private void thenPrintsToConsoleTimes(int times) {
+        verify(mockUserComms, times(times)).systemOut();
     }
 
-    private void thenPrintsToConsole() {
-        verify(mockUserComms, times(1)).systemOut();
+    private void thenReturnsInput(int input) {
+        assertThat(userInput, is(input));
     }
 
 }
