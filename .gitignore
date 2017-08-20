@@ -2,14 +2,11 @@
 .project
 .settings/
 .classpath
-.vscode/
 bin/
 build/
 logs/
 classes/
 local/
-*/docker/*.jar
-*/docker/*.sh
 .gradle/
 *.iml
 .DS_Store
